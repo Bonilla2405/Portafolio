@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="es-CR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurante Amanecer Dorado — Cocina costarricense de autor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold:     #C8921A;
+      --gold-lt:  #F0C060;
+      --dark:     #12080A;
+      --dark2:    #1C1009;
+      --dark3:    #241510;
+      --cream:    #F5EFDF;
+      --cream2:   #EAE0C8;
+      --text:     #F5EFDF;
+      --text2:    #B8A888;
+      --serif:    'Playfair Display', Georgia, serif;
+      --sans:     'Lato', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--dark); color: var(--text); font-family: var(--sans); overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── NAVBAR ── */
+    #nav {
+      position: fixed; top: 0; width: 100%; z-index: 99;
+      background: rgba(18, 8, 10, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,146,26,0.25);
+      transition: background 0.3s;
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      height: 72px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      font-family: var(--serif); font-size: 1.3rem; font-weight: 700;
+      color: var(--gold-lt); letter-spacing: 0.03em;
+    }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--text2);
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--gold-lt); }
+    .nav-cta {
+      border: 1px solid var(--gold); color: var(--gold);
+      padding: 0.5rem 1.4rem; border-radius: 4px;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      transition: all 0.25s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--dark); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(165deg, #1C0E08 0%, #2A1508 50%, #100A05 100%);
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 8rem 2rem 5rem; position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,146,26,0.12), transparent 70%);
+    }
+    #hero::after {
+      content: ''; position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 60px,
+        rgba(200,146,26,0.02) 60px,
+        rgba(200,146,26,0.02) 61px
+      );
+    }
+    .hero-inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; }
+    .hero-eyebrow {
+      font-size: 0.75rem; letter-spacing: 5px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem; display: flex; align-items: center;
+      justify-content: center; gap: 1rem;
+    }
+    .hero-eyebrow::before, .hero-eyebrow::after {
+      content: ''; width: 40px; height: 1px; background: var(--gold); opacity: 0.6;
+    }
+    #hero h1 {
+      font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800; line-height: 1.0; margin-bottom: 1.5rem;
+      color: var(--cream);
+    }
+    #hero h1 em { font-style: italic; color: var(--gold-lt); }
+    #hero p {
+      font-size: 1.15rem; color: var(--text2); line-height: 1.9;
+      max-width: 540px; margin: 0 auto 3rem; font-weight: 300;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn-gold {
+      background: var(--gold); color: var(--dark);
+      padding: 1rem 2.5rem; border-radius: 4px;
+      font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      transition: all 0.25s; border: none; cursor: pointer;
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-2px); }
+    .btn-outline-gold {
+      border: 1px solid var(--gold); color: var(--gold);
+      padding: 1rem 2.5rem; border-radius: 4px;
+      font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      transition: all 0.25s;
+    }
+    .btn-outline-gold:hover { background: rgba(200,146,26,0.1); transform: translateY(-2px); }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: var(--text2); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll::after {
+      content: ''; width: 1px; height: 40px; background: var(--gold); opacity: 0.5;
+    }
+    @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; justify-content: center;
+      gap: 1.5rem; margin: 1.5rem 0;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, rgba(200,146,26,0.4), transparent);
+    }
+    .divider span { color: var(--gold); font-size: 1.2rem; }
+
+    /* ── SECCIÓN GENERAL ── */
+    section { padding: 100px 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-label {
+      font-size: 0.72rem; letter-spacing: 4px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem; display: block;
+    }
+    .section-title {
+      font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; color: var(--cream); line-height: 1.15; margin-bottom: 0.5rem;
+    }
+    .section-line { width: 50px; height: 2px; background: var(--gold); margin-top: 1rem; }
+    .center { text-align: center; }
+    .center .section-line { margin: 1rem auto 0; }
+
+    /* ── NOSOTROS ── */
+    #nosotros { background: var(--dark2); }
+    .nosotros-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center; margin-top: 4rem;
+    }
+    .nosotros-img {
+      width: 100%; aspect-ratio: 4/5;
+      background: linear-gradient(135deg, #2A1508, #3D1F0D);
+      border-radius: 4px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(200,146,26,0.2);
+    }
+    .nosotros-img::before {
+      content: ''; position: absolute; top: 16px; left: 16px; right: -16px; bottom: -16px;
+      border: 1px solid var(--gold); border-radius: 4px; opacity: 0.25;
+    }
+    .nosotros-img span { font-size: 5rem; }
+    .nosotros-text p {
+      color: var(--text2); line-height: 1.9; font-weight: 300;
+      margin-bottom: 1.25rem; font-size: 1rem;
+    }
+    .stats-row { display: flex; gap: 3rem; margin-top: 2.5rem; }
+    .stat-item { text-align: center; }
+    .stat-num { font-family: var(--serif); font-size: 2.5rem; color: var(--gold-lt); font-weight: 700; display: block; }
+    .stat-lbl { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text2); margin-top: 0.25rem; }
+
+    /* ── MENÚ ── */
+    #menu { background: var(--dark); }
+    .menu-tabs {
+      display: flex; gap: 0; justify-content: center; margin: 3rem 0 2.5rem;
+      border-bottom: 1px solid rgba(200,146,26,0.2);
+    }
+    .menu-tab {
+      padding: 0.85rem 2rem; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text2); cursor: pointer; transition: all 0.25s;
+      border-bottom: 2px solid transparent; margin-bottom: -1px; font-weight: 700;
+    }
+    .menu-tab.active, .menu-tab:hover { color: var(--gold-lt); border-bottom-color: var(--gold); }
+    .menu-panel { display: none; }
+    .menu-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+    .menu-item {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 1rem; padding: 1.5rem 1rem;
+      border-bottom: 1px dotted rgba(200,146,26,0.15);
+      transition: background 0.2s;
+    }
+    .menu-item:hover { background: rgba(200,146,26,0.04); }
+    .menu-item-info {}
+    .menu-item-name { font-family: var(--serif); font-size: 1.05rem; color: var(--cream); margin-bottom: 0.35rem; }
+    .menu-item-desc { font-size: 0.83rem; color: var(--text2); font-weight: 300; line-height: 1.6; }
+    .menu-item-price { font-family: var(--serif); font-size: 1.1rem; color: var(--gold-lt); white-space: nowrap; padding-top: 0.1rem; }
+
+    /* ── RESERVACIONES ── */
+    #reservaciones { background: var(--dark2); }
+    .reserv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-top: 4rem; align-items: start; }
+    .reserv-info p { color: var(--text2); line-height: 1.9; font-weight: 300; margin-bottom: 2rem; }
+    .info-list { display: flex; flex-direction: column; gap: 1rem; }
+    .info-row { display: flex; gap: 1.25rem; align-items: center; }
+    .info-icon { font-size: 1.3rem; width: 36px; text-align: center; flex-shrink: 0; }
+    .info-text { font-size: 0.9rem; color: var(--text2); }
+    .info-text strong { color: var(--cream); display: block; font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.15rem; }
+    .form-reserv { display: flex; flex-direction: column; gap: 1.1rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.72rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text2); font-weight: 700; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(200,146,26,0.25);
+      border-radius: 4px; padding: 0.85rem 1rem; color: var(--cream);
+      font-family: var(--sans); font-size: 0.9rem; outline: none;
+      transition: border-color 0.25s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(200,146,26,0.3); }
+    .form-group select option { background: var(--dark2); }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    /* ── TESTIMONIOS ── */
+    #testimonios { background: var(--dark3); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; margin-top: 4rem; }
+    .testi-card {
+      background: var(--dark2); border: 1px solid rgba(200,146,26,0.15);
+      border-radius: 6px; padding: 2rem; position: relative;
+    }
+    .testi-card::before {
+      content: '"'; position: absolute; top: 1rem; right: 1.5rem;
+      font-family: var(--serif); font-size: 4rem; color: var(--gold); opacity: 0.15;
+      line-height: 1;
+    }
+    .testi-stars { color: var(--gold); letter-spacing: 2px; margin-bottom: 1rem; }
+    .testi-text { font-size: 0.92rem; color: var(--text2); line-height: 1.8; margin-bottom: 1.5rem; font-weight: 300; font-style: italic; }
+    .testi-author { display: flex; align-items: center; gap: 0.85rem; }
+    .testi-avatar {
+      width: 42px; height: 42px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--gold), var(--dark3));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--serif); font-size: 1rem; color: var(--dark); font-weight: 700;
+    }
+    .testi-name { font-size: 0.88rem; color: var(--cream); font-weight: 700; }
+    .testi-origin { font-size: 0.75rem; color: var(--text2); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0A0504;
+      border-top: 1px solid rgba(200,146,26,0.15);
+      padding: 4rem 0 2rem;
+    }
+    .footer-main {
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem;
+      padding-bottom: 3rem; border-bottom: 1px solid rgba(200,146,26,0.1);
+      margin-bottom: 2rem;
+    }
+    .footer-brand { font-family: var(--serif); font-size: 1.5rem; color: var(--gold-lt); margin-bottom: 1rem; }
+    .footer-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.8; font-weight: 300; max-width: 300px; }
+    .footer-col h4 { font-size: 0.72rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 1.25rem; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a { font-size: 0.88rem; color: var(--text2); transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--gold-lt); }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 0.8rem; color: rgba(184,168,136,0.5); }
+    .footer-back {
+      font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--gold); border: 1px solid rgba(200,146,26,0.3);
+      padding: 0.5rem 1.25rem; border-radius: 4px; transition: all 0.25s;
+    }
+    .footer-back:hover { background: rgba(200,146,26,0.1); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nosotros-grid, .reserv-grid, .footer-main { grid-template-columns: 1fr; gap: 3rem; }
+      .menu-panel.active { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .stats-row { gap: 2rem; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      section { padding: 70px 0; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">Amanecer Dorado</a>
+      <nav class="nav-links">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#menu">Menú</a>
+        <a href="#testimonios">Reseñas</a>
+        <a href="#reservaciones">Contacto</a>
+      </nav>
+      <a href="#reservaciones" class="nav-cta">Reservar mesa</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">San José, Costa Rica — Desde 2018</p>
+      <h1>Una experiencia<br><em>gastronómica</em><br>sin igual</h1>
+      <p>Cocina costarricense de autor en un ambiente cálido y elegante. Ingredientes frescos de temporada, sabores que narran nuestra tierra.</p>
+      <div class="hero-btns">
+        <a href="#reservaciones" class="btn-gold">Reservar mesa</a>
+        <a href="#menu" class="btn-outline-gold">Ver menú</a>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
+
+  <!-- NOSOTROS -->
+  <section id="nosotros">
+    <div class="container">
+      <div class="nosotros-grid">
+        <div class="nosotros-img">
+          <span>🍽️</span>
+        </div>
+        <div class="nosotros-text">
+          <span class="section-label">Nuestra historia</span>
+          <h2 class="section-title">Pasión por la cocina costarricense</h2>
+          <div class="section-line"></div>
+          <br>
+          <p>Fundado en 2018 por el chef Alonso Mora, Restaurante Amanecer Dorado nació de un sueño: llevar la cocina tradicional de Costa Rica al más alto nivel, honrando los ingredientes locales con técnicas contemporáneas.</p>
+          <p>Cada plato es una historia. Trabajamos con productores locales de Heredia, Cartago y la zona norte para garantizar ingredientes frescos y sostenibles en cada servicio.</p>
+          <p>Nuestro comedor para 60 personas ofrece un ambiente íntimo y cálido, ideal para cenas especiales, celebraciones y almuerzos de negocios.</p>
+          <div class="stats-row">
+            <div class="stat-item">
+              <span class="stat-num">6+</span>
+              <span class="stat-lbl">Años abiertos</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">1,200+</span>
+              <span class="stat-lbl">Clientes / mes</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">4.9 ★</span>
+              <span class="stat-lbl">Google Reviews</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENÚ -->
+  <section id="menu">
+    <div class="container">
+      <div class="center">
+        <span class="section-label">Lo que ofrecemos</span>
+        <h2 class="section-title">Nuestro menú</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="menu-tabs">
+        <div class="menu-tab active" onclick="switchTab(this,'entradas')">Entradas</div>
+        <div class="menu-tab" onclick="switchTab(this,'principales')">Platos fuertes</div>
+        <div class="menu-tab" onclick="switchTab(this,'postres')">Postres</div>
+        <div class="menu-tab" onclick="switchTab(this,'bebidas')">Bebidas</div>
+      </div>
+
+      <div id="entradas" class="menu-panel active">
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Ceviche de tilapia del Caribe</div><div class="menu-item-desc">Tilapia fresca, leche de coco, culantro, chile dulce y limón mandarina</div></div><div class="menu-item-price">₡4,800</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Patacones con chifrijo gourmet</div><div class="menu-item-desc">Plátano verde frito, frijoles negros, chicharrón artesanal, pico de gallo</div></div><div class="menu-item-price">₡3,500</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Carpaccio de palmito</div><div class="menu-item-desc">Palmito fresco, vinagreta de maracuyá, queso semiduro, hierbas frescas</div></div><div class="menu-item-price">₡5,200</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Sopa negra de la abuela</div><div class="menu-item-desc">Frijoles negros criollos, huevo pochado, cilantro, tortilla frita</div></div><div class="menu-item-price">₡3,800</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tamal de elote con natilla</div><div class="menu-item-desc">Elote dulce molido, natilla de Turrialba, rodajas de guayaba</div></div><div class="menu-item-price">₡4,200</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tabla de quesos ticos</div><div class="menu-item-desc">Queso Turrialba, palmito ahumado, queso fresco, mermelada de cas y tostadas</div></div><div class="menu-item-price">₡6,500</div></div>
+      </div>
+
+      <div id="principales" class="menu-panel">
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Lomo de res con chimichurri criollo</div><div class="menu-item-desc">Res de Guanacaste, chimichurri de culantro, yuca frita, ensalada de palmito</div></div><div class="menu-item-price">₡14,500</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Corvina al ajillo caribeño</div><div class="menu-item-desc">Corvina fresca, mantequilla de coco, ajo confitado, arroz con coco, patacones</div></div><div class="menu-item-price">₡12,800</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Gallo pinto de autor</div><div class="menu-item-desc">Arroz basmati, frijoles blancos, salsa Lizano, chicharrón crujiente, plátano maduro</div></div><div class="menu-item-price">₡8,900</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Pollo en salsa de tamarindo</div><div class="menu-item-desc">Pechuga rellena de palmito, salsa de tamarindo criollo, vegetales de temporada</div></div><div class="menu-item-price">₡11,200</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Cazuela de mariscos Limón</div><div class="menu-item-desc">Camarones, pulpo, mejillones, caldo de leche de coco y curry suave, arroz integral</div></div><div class="menu-item-price">₡16,500</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Costillas de cerdo ahumadas</div><div class="menu-item-desc">Cerdo de Pérez Zeledón, glasé de tapa de dulce, frijoles blancos, yuca al horno</div></div><div class="menu-item-price">₡13,200</div></div>
+      </div>
+
+      <div id="postres" class="menu-panel">
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Tres leches de guanábana</div><div class="menu-item-desc">Bizcocho esponjoso, crema de guanábana, leche condensada, merengue tostado</div></div><div class="menu-item-price">₡3,800</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Churros con cajeta tica</div><div class="menu-item-desc">Churros artesanales, dulce de leche de Zarcero, polvo de canela y azúcar</div></div><div class="menu-item-price">₡3,200</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Helado de cas y limón</div><div class="menu-item-desc">Helado artesanal, coulis de cas, ralladura de limón mandarina, galleta de coco</div></div><div class="menu-item-price">₡3,500</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Arroz con leche de la casa</div><div class="menu-item-desc">Arroz cremoso, canela en rama, vainilla de Cartago, crocante de maní</div></div><div class="menu-item-price">₡2,800</div></div>
+      </div>
+
+      <div id="bebidas" class="menu-panel">
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Fresco de cas natural</div><div class="menu-item-desc">Cas fresco, sin azúcar refinada, hielo artesanal y menta</div></div><div class="menu-item-price">₡1,800</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Horchata de la casa</div><div class="menu-item-desc">Arroz, leche de coco, canela, vainilla natural y azúcar de caña</div></div><div class="menu-item-price">₡2,200</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Café chorreado premium</div><div class="menu-item-desc">Café de altura de Tarrazú, servido en chorreador tradicional de madera</div></div><div class="menu-item-price">₡2,400</div></div>
+        <div class="menu-item"><div class="menu-item-info"><div class="menu-item-name">Limonada de jengibre y cúrcuma</div><div class="menu-item-desc">Limón tico, jengibre fresco, cúrcuma, agua con gas y miel de abeja</div></div><div class="menu-item-price">₡2,600</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="center">
+        <span class="section-label">Lo que dicen nuestros clientes</span>
+        <h2 class="section-title">Reseñas</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"La mejor experiencia gastronómica que he tenido en Costa Rica. El ceviche de tilapia y la corvina al ajillo son simplemente increíbles. El ambiente es espectacular."</p>
+          <div class="testi-author"><div class="testi-avatar">MV</div><div><div class="testi-name">María Vásquez</div><div class="testi-origin">San José, CR</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Vinimos a celebrar nuestro aniversario y fue perfecto. El servicio fue impecable y cada plato llegó con una presentación de altísimo nivel. Definitivamente regresamos."</p>
+          <div class="testi-author"><div class="testi-avatar">CR</div><div><div class="testi-name">Carlos & Raquel</div><div class="testi-origin">Heredia, CR</div></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Visitar Amanecer Dorado fue lo mejor de mi viaje a Costa Rica. Los sabores son auténticos y únicos. Nunca había probado un gallo pinto tan sofisticado y a la vez tan tico."</p>
+          <div class="testi-author"><div class="testi-avatar">JM</div><div><div class="testi-name">Julia Méndez</div><div class="testi-origin">Barcelona, España</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVACIONES -->
+  <section id="reservaciones">
+    <div class="container">
+      <div class="reserv-grid">
+        <div class="reserv-info">
+          <span class="section-label">Visítanos</span>
+          <h2 class="section-title">Reserva tu mesa</h2>
+          <div class="section-line"></div>
+          <br>
+          <p>Para garantizarte la mejor experiencia, recomendamos hacer tu reserva con al menos 48 horas de anticipación. También aceptamos grupos y eventos privados.</p>
+          <div class="info-list">
+            <div class="info-row"><div class="info-icon">📍</div><div class="info-text"><strong>Dirección</strong>Edificio Ávila, Sabana Norte, San José, Costa Rica</div></div>
+            <div class="info-row"><div class="info-icon">🕐</div><div class="info-text"><strong>Horario</strong>Lun – Vie: 11:30 a.m. – 10:00 p.m.<br>Sáb – Dom: 11:00 a.m. – 11:00 p.m.</div></div>
+            <div class="info-row"><div class="info-icon">📞</div><div class="info-text"><strong>Teléfono</strong>(506) 2222-4567</div></div>
+            <div class="info-row"><div class="info-icon">📧</div><div class="info-text"><strong>Email</strong>reservas@amanecerdorado.cr</div></div>
+          </div>
+        </div>
+        <form class="form-reserv" onsubmit="return false;">
+          <div class="form-row">
+            <div class="form-group"><label>Nombre</label><input type="text" placeholder="Tu nombre completo"></div>
+            <div class="form-group"><label>Teléfono</label><input type="tel" placeholder="(506) 8888-0000"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Fecha</label><input type="date"></div>
+            <div class="form-group"><label>Hora</label>
+              <select>
+                <option>11:30 a.m.</option><option>1:00 p.m.</option><option>2:00 p.m.</option>
+                <option>7:00 p.m.</option><option>8:00 p.m.</option><option>9:00 p.m.</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group"><label>Personas</label>
+            <select><option>1 persona</option><option>2 personas</option><option>3–4 personas</option><option>5–6 personas</option><option>7+ personas</option></select>
+          </div>
+          <div class="form-group"><label>Ocasión especial (opcional)</label><textarea placeholder="Cumpleaños, aniversario, negocios..."></textarea></div>
+          <button class="btn-gold" style="border:none;cursor:pointer;font-family:inherit;">Confirmar reserva</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-main">
+        <div>
+          <div class="footer-brand">Amanecer Dorado</div>
+          <p class="footer-desc">Cocina costarricense de autor en el corazón de San José. Ingredientes locales, sabores auténticos y experiencias memorables.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#menu">Menú</a></li>
+            <li><a href="#testimonios">Reseñas</a></li>
+            <li><a href="#reservaciones">Reservaciones</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="#">(506) 2222-4567</a></li>
+            <li><a href="#">reservas@amanecerdorado.cr</a></li>
+            <li><a href="#">Sabana Norte, San José</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Restaurante Amanecer Dorado. Todos los derechos reservados.</p>
+        <a href="../index.html" class="footer-back">← Volver al portafolio</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(el, id) {
+      document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById(id).classList.add('active');
+    }
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      document.getElementById('nav').style.background =
+        window.scrollY > 60 ? 'rgba(18,8,10,0.97)' : 'rgba(18,8,10,0.88)';
+    });
+  </script>
+
+</body>
+</html>

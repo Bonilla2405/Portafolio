@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Dental Sonrisa Perfecta — Tu salud bucal en buenas manos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Fraunces:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --teal:    #0EA5E9;
+      --teal2:   #0284C7;
+      --teal3:   #BAE6FD;
+      --mint:    #ECFDF5;
+      --white:   #FFFFFF;
+      --gray1:   #F8FAFC;
+      --gray2:   #F1F5F9;
+      --gray3:   #E2E8F0;
+      --text:    #0F172A;
+      --text2:   #475569;
+      --text3:   #94A3B8;
+      --sans:    'Nunito', sans-serif;
+      --serif:   'Fraunces', serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--text); font-family: var(--sans); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── NAVBAR ── */
+    #nav {
+      position: fixed; top: 0; width: 100%; z-index: 99;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gray3); transition: box-shadow 0.3s;
+    }
+    #nav.scrolled { box-shadow: 0 2px 20px rgba(14,165,233,0.1); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+      height: 72px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.7rem; font-weight: 800; font-size: 1.15rem; color: var(--text); }
+    .nav-brand-logo {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--teal), #38BDF8);
+      display: flex; align-items: center; justify-content: center; font-size: 1.15rem;
+    }
+    .nav-brand .teal { color: var(--teal); }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a { font-size: 0.88rem; font-weight: 600; color: var(--text2); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      background: var(--teal); color: white;
+      padding: 0.6rem 1.5rem; border-radius: 50px;
+      font-size: 0.85rem; font-weight: 700; transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--teal2); box-shadow: 0 4px 20px rgba(14,165,233,0.35); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; padding: 9rem 2rem 4rem;
+      background: linear-gradient(160deg, var(--white) 0%, var(--mint) 60%, var(--teal3) 100%);
+      display: flex; align-items: center; position: relative; overflow: hidden;
+    }
+    .hero-circle-deco {
+      position: absolute; border-radius: 50%;
+      pointer-events: none;
+    }
+    .hc1 { width: 500px; height: 500px; top: -100px; right: -100px; background: radial-gradient(circle, rgba(14,165,233,0.08), transparent 70%); }
+    .hc2 { width: 300px; height: 300px; bottom: -80px; left: -80px; background: radial-gradient(circle, rgba(14,165,233,0.06), transparent 70%); }
+    .hero-inner { max-width: 1200px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+    .hero-trust { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--white); border: 1px solid var(--teal3); border-radius: 50px; padding: 0.4rem 1rem 0.4rem 0.5rem; margin-bottom: 1.5rem; box-shadow: 0 2px 8px rgba(14,165,233,0.1); }
+    .trust-avatars { display: flex; margin-left: 0; }
+    .trust-avatars span { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg,#7DD3FC,#38BDF8); border: 2px solid white; margin-right: -6px; display: flex; align-items: center; justify-content: center; font-size: 0.65rem; }
+    .hero-trust p { font-size: 0.75rem; font-weight: 700; color: var(--text); padding-left: 10px; }
+    .hero-trust p span { color: var(--teal); }
+    #hero h1 { font-family: var(--serif); font-size: clamp(2.4rem, 5vw, 3.8rem); line-height: 1.1; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1rem; }
+    #hero h1 em { font-style: italic; color: var(--teal); }
+    #hero p { font-size: 1.05rem; color: var(--text2); line-height: 1.8; margin-bottom: 2.5rem; max-width: 480px; }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary { background: var(--teal); color: white; padding: 0.95rem 2.2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 800; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.4rem; }
+    .btn-primary:hover { background: var(--teal2); box-shadow: 0 8px 25px rgba(14,165,233,0.35); transform: translateY(-2px); }
+    .btn-outline { border: 2px solid var(--teal); color: var(--teal); padding: 0.93rem 2rem; border-radius: 50px; font-size: 0.9rem; font-weight: 700; transition: all 0.2s; }
+    .btn-outline:hover { background: var(--teal); color: white; }
+    /* Hero card visual */
+    .hero-visual { display: flex; flex-direction: column; gap: 1rem; }
+    .hero-card {
+      background: white; border-radius: 16px; padding: 1.5rem;
+      box-shadow: 0 4px 24px rgba(14,165,233,0.1); border: 1px solid var(--gray3);
+    }
+    .hero-card-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+    .hero-card-icon { width: 44px; height: 44px; border-radius: 12px; background: linear-gradient(135deg,#BAE6FD,#7DD3FC); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+    .hero-card-head h4 { font-size: 0.95rem; font-weight: 800; }
+    .hero-card-head p { font-size: 0.75rem; color: var(--text2); }
+    .progress-item { margin-bottom: 0.75rem; }
+    .progress-item:last-child { margin-bottom: 0; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 0.78rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--text2); }
+    .progress-label span:last-child { color: var(--teal); font-weight: 700; }
+    .progress-bar { height: 8px; background: var(--gray2); border-radius: 50px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 50px; background: linear-gradient(90deg, var(--teal), #38BDF8); }
+    .hero-card-small { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .mini-card { background: white; border-radius: 14px; padding: 1.25rem; box-shadow: 0 4px 20px rgba(14,165,233,0.08); border: 1px solid var(--gray3); text-align: center; }
+    .mini-card .icon { font-size: 1.75rem; margin-bottom: 0.3rem; }
+    .mini-card .num { font-size: 1.6rem; font-weight: 800; color: var(--teal); line-height: 1; }
+    .mini-card .lbl { font-size: 0.72rem; color: var(--text2); font-weight: 600; margin-top: 0.15rem; }
+
+    /* ── SHARED ── */
+    section { padding: 90px 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-tag { display: inline-flex; align-items: center; gap: 0.4rem; background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 50px; padding: 0.3rem 0.85rem; font-size: 0.72rem; font-weight: 800; color: var(--teal2); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 0.85rem; }
+    .section-title { font-family: var(--serif); font-size: clamp(1.8rem, 3.5vw, 2.8rem); letter-spacing: -0.02em; color: var(--text); line-height: 1.15; margin-bottom: 0.75rem; }
+    .section-sub { font-size: 1rem; color: var(--text2); line-height: 1.8; max-width: 540px; }
+    .center { text-align: center; }
+    .center .section-sub { margin: 0 auto; }
+    .text-teal { color: var(--teal); }
+
+    /* ── SERVICIOS ── */
+    #servicios { background: var(--gray1); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .svc-card {
+      background: white; border: 1px solid var(--gray3); border-radius: 16px;
+      padding: 1.75rem; text-align: center; transition: all 0.3s;
+    }
+    .svc-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(14,165,233,0.1); border-color: var(--teal3); }
+    .svc-icon-wrap { width: 64px; height: 64px; border-radius: 16px; background: linear-gradient(135deg,#EFF6FF,#DBEAFE); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1rem; }
+    .svc-card h3 { font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .svc-card p { font-size: 0.85rem; color: var(--text2); line-height: 1.7; }
+    .svc-price { margin-top: 1rem; display: inline-block; background: var(--mint); color: var(--teal2); font-weight: 800; font-size: 0.82rem; padding: 0.3rem 0.85rem; border-radius: 50px; }
+
+    /* ── POR QUÉ ELEGIRNOS ── */
+    #porquenos { background: white; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .why-visual { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .why-card { background: var(--gray1); border: 1px solid var(--gray3); border-radius: 14px; padding: 1.25rem; transition: all 0.25s; }
+    .why-card:hover { background: white; box-shadow: 0 8px 24px rgba(14,165,233,0.08); border-color: var(--teal3); }
+    .why-card-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .why-card h4 { font-size: 0.9rem; font-weight: 800; margin-bottom: 0.35rem; }
+    .why-card p { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
+    .why-content p { color: var(--text2); line-height: 1.8; margin-bottom: 2rem; }
+    .why-checks { display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2.5rem; }
+    .why-check { display: flex; gap: 0.75rem; align-items: flex-start; }
+    .check-icon { width: 22px; height: 22px; border-radius: 50%; background: var(--mint); display: flex; align-items: center; justify-content: center; font-size: 0.65rem; flex-shrink: 0; margin-top: 0.1rem; color: var(--teal); font-weight: 700; }
+    .why-check p { font-size: 0.9rem; color: var(--text2); line-height: 1.6; }
+
+    /* ── STATS ── */
+    #stats { background: linear-gradient(135deg, var(--teal), var(--teal2)); padding: 60px 0; }
+    .stats-row { display: grid; grid-template-columns: repeat(4,1fr); }
+    .stat-card { text-align: center; padding: 1.5rem 1rem; border-right: 1px solid rgba(255,255,255,0.15); }
+    .stat-card:last-child { border-right: none; }
+    .stat-num { font-family: var(--serif); font-size: 3rem; font-weight: 700; color: white; display: block; line-height: 1; margin-bottom: 0.4rem; }
+    .stat-lbl { font-size: 0.85rem; color: rgba(255,255,255,0.75); font-weight: 600; }
+
+    /* ── TESTIMONIOS ── */
+    #testimonios { background: var(--gray1); }
+    .testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .testi-card { background: white; border: 1px solid var(--gray3); border-radius: 16px; padding: 1.75rem; transition: all 0.3s; }
+    .testi-card:hover { box-shadow: 0 12px 36px rgba(14,165,233,0.08); border-color: var(--teal3); transform: translateY(-3px); }
+    .stars { color: #F59E0B; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 1rem; }
+    .testi-card blockquote { font-size: 0.9rem; color: var(--text2); line-height: 1.75; font-style: italic; margin-bottom: 1.25rem; }
+    .testi-author { display: flex; align-items: center; gap: 0.75rem; }
+    .author-av { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg,#BAE6FD,var(--teal)); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 700; color: white; flex-shrink: 0; }
+    .author-av.g { background: linear-gradient(135deg,#BBF7D0,#34D399); }
+    .author-av.p { background: linear-gradient(135deg,#DDD6FE,#7C3AED); }
+    .author-info strong { font-size: 0.88rem; font-weight: 800; display: block; }
+    .author-info span { font-size: 0.75rem; color: var(--text3); }
+
+    /* ── CITA ── */
+    #cita { background: white; }
+    .cita-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; margin-top: 3.5rem; }
+    .cita-info h3 { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .cita-info p { font-size: 0.9rem; color: var(--text2); line-height: 1.7; margin-bottom: 2rem; }
+    .info-cards { display: flex; flex-direction: column; gap: 0.85rem; }
+    .info-card { display: flex; gap: 1rem; align-items: center; background: var(--gray1); border: 1px solid var(--gray3); border-radius: 12px; padding: 1rem 1.25rem; }
+    .ic-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg,#E0F2FE,#BAE6FD); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .ic-info strong { font-size: 0.78rem; color: var(--text3); display: block; font-weight: 600; }
+    .ic-info span { font-size: 0.9rem; font-weight: 700; }
+    .cita-form { background: var(--gray1); border: 1px solid var(--gray3); border-radius: 20px; padding: 2.5rem; }
+    .cita-form h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.25rem; }
+    .cita-form > p { font-size: 0.82rem; color: var(--text2); margin-bottom: 1.75rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-field.full { grid-column: 1 / -1; }
+    .form-field label { font-size: 0.75rem; font-weight: 700; color: var(--text2); }
+    .form-field input, .form-field select, .form-field textarea {
+      background: white; border: 1.5px solid var(--gray3); border-radius: 10px;
+      padding: 0.8rem 1rem; font-family: var(--sans); font-size: 0.88rem; color: var(--text);
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--teal); }
+    .form-field select option { color: var(--text); }
+    .form-field textarea { resize: vertical; min-height: 90px; }
+    .form-disclaimer { font-size: 0.75rem; color: var(--text3); margin-bottom: 1.25rem; line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--text); color: #CBD5E1; padding: 4rem 0 2rem; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; padding-bottom: 3rem; border-bottom: 1px solid rgba(255,255,255,0.07); margin-bottom: 2rem; }
+    .footer-brand { font-weight: 800; font-size: 1.1rem; color: white; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .footer-brand .teal { color: var(--teal); }
+    .footer-desc { font-size: 0.83rem; line-height: 1.7; opacity: 0.6; max-width: 260px; }
+    .footer-col h4 { font-size: 0.72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 1.25rem; }
+    .footer-col li { margin-bottom: 0.6rem; }
+    .footer-col li a { font-size: 0.83rem; opacity: 0.6; transition: opacity 0.2s; }
+    .footer-col li a:hover { opacity: 1; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; }
+    .footer-bottom p { font-size: 0.78rem; opacity: 0.4; }
+    .footer-back {
+      font-size: 0.78rem; font-weight: 700; color: var(--teal);
+      border: 1px solid rgba(14,165,233,0.3); padding: 0.5rem 1.25rem;
+      border-radius: 50px; transition: all 0.2s;
+    }
+    .footer-back:hover { background: rgba(14,165,233,0.1); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero-inner, .why-grid, .cita-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid, .testi-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      section { padding: 65px 0; }
+      #stats { padding: 50px 0; }
+      .stats-row { grid-template-columns: repeat(2,1fr); }
+      .hero-card-small { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .services-grid, .testi-grid, .why-visual { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header id="nav">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-brand">
+        <div class="nav-brand-logo">🦷</div>
+        Sonrisa<span class="teal">Perfecta</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#porquenos">Nosotros</a>
+        <a href="#testimonios">Testimonios</a>
+        <a href="#cita">Cita</a>
+      </nav>
+      <a href="#cita" class="nav-cta">📅 Agendar cita</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-circle-deco hc1"></div>
+    <div class="hero-circle-deco hc2"></div>
+    <div class="hero-inner">
+      <div>
+        <div class="hero-trust">
+          <div class="trust-avatars">
+            <span>M</span><span>K</span><span>A</span>
+          </div>
+          <p>+<span>2,400</span> pacientes confían en nosotros</p>
+        </div>
+        <h1>Tu sonrisa<br><em>merece</em> lo mejor</h1>
+        <p>En Clínica Dental Sonrisa Perfecta ofrecemos atención personalizada, tecnología de vanguardia y un equipo de especialistas comprometidos con tu salud bucal.</p>
+        <div class="hero-btns">
+          <a href="#cita" class="btn-primary">📅 Agendar cita gratis</a>
+          <a href="#servicios" class="btn-outline">Ver servicios</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-head">
+            <div class="hero-card-icon">🦷</div>
+            <div><h4>Salud bucal</h4><p>Índices 2025</p></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Satisfacción pacientes</span><span>98%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:98%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Tratamientos exitosos</span><span>99%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:99%"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Casos sin dolor</span><span>95%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:95%"></div></div>
+          </div>
+        </div>
+        <div class="hero-card-small">
+          <div class="mini-card"><div class="icon">⭐</div><div class="num">4.9</div><div class="lbl">Calificación Google</div></div>
+          <div class="mini-card"><div class="icon">🏆</div><div class="num">15</div><div class="lbl">Años de experiencia</div></div>
+          <div class="mini-card"><div class="icon">👨‍⚕️</div><div class="num">8</div><div class="lbl">Especialistas</div></div>
+          <div class="mini-card"><div class="icon">💉</div><div class="num">0%</div><div class="lbl">Dolor en implantes</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section id="servicios">
+    <div class="container">
+      <div class="center">
+        <span class="section-tag">Tratamientos</span>
+        <h2 class="section-title">Servicios <span class="text-teal">dentales</span> completos</h2>
+        <p class="section-sub">Desde una limpieza de rutina hasta ortodoncia y estética dental, cubrimos todas tus necesidades bucales.</p>
+      </div>
+      <div class="services-grid">
+        <div class="svc-card"><div class="svc-icon-wrap">🦷</div><h3>Limpieza y profilaxis</h3><p>Eliminamos sarro, placa y manchas para mantener tus dientes brillantes y libres de bacterias dañinas.</p><span class="svc-price">Desde ₡15,000</span></div>
+        <div class="svc-card"><div class="svc-icon-wrap">😁</div><h3>Blanqueamiento dental</h3><p>Tecnología LED de última generación para aclarar tu sonrisa hasta 8 tonos en una sola sesión.</p><span class="svc-price">Desde ₡75,000</span></div>
+        <div class="svc-card"><div class="svc-icon-wrap">🦮</div><h3>Ortodoncia</h3><p>Brackets metálicos, cerámicos o alineadores invisibles Invisalign® para corregir tu mordida.</p><span class="svc-price">Desde ₡350,000</span></div>
+        <div class="svc-card"><div class="svc-icon-wrap">🔩</div><h3>Implantes dentales</h3><p>Reemplazamos dientes perdidos con implantes de titanio de alta durabilidad y apariencia natural.</p><span class="svc-price">Desde ₡480,000</span></div>
+        <div class="svc-card"><div class="svc-icon-wrap">👶</div><h3>Odontología infantil</h3><p>Consultas amigables y sin miedo para los más pequeños de la casa. Sellantes y flúor preventivo.</p><span class="svc-price">Desde ₡12,000</span></div>
+        <div class="svc-card"><div class="svc-icon-wrap">💉</div><h3>Endodoncia</h3><p>Tratamiento de conducto indoloro con anestesia local avanzada. Salvamos tu diente natural.</p><span class="svc-price">Desde ₡190,000</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ ELEGIRNOS -->
+  <section id="porquenos">
+    <div class="container">
+      <div class="why-grid">
+        <div>
+          <span class="section-tag">Nosotros</span>
+          <h2 class="section-title">¿Por qué elegir <span class="text-teal">Sonrisa Perfecta</span>?</h2>
+          <p class="why-content p">Somos una clínica con 15 años de trayectoria, comprometida con la excelencia clínica y la comodidad de cada paciente. Cada tratamiento es diseñado a la medida de tu sonrisa.</p>
+          <div class="why-checks">
+            <div class="why-check"><div class="check-icon">✓</div><p><strong>Tecnología 3D y rayos X digital</strong> — diagnósticos más precisos y menos radiación para el paciente.</p></div>
+            <div class="why-check"><div class="check-icon">✓</div><p><strong>Equipo multidisciplinario certificado</strong> — todos nuestros especialistas tienen posgrado en su área.</p></div>
+            <div class="why-check"><div class="check-icon">✓</div><p><strong>Horarios flexibles y citas en línea</strong> — agenda en minutos desde el celular, incluso fines de semana.</p></div>
+            <div class="why-check"><div class="check-icon">✓</div><p><strong>Planes de financiamiento sin intereses</strong> — aprobación inmediata sin necesidad de fiador.</p></div>
+          </div>
+          <a href="#cita" class="btn-primary">Conocer al equipo →</a>
+        </div>
+        <div class="why-visual">
+          <div class="why-card"><div class="why-card-icon">🔬</div><h4>Tecnología 3D</h4><p>Escáner intraoral y tomografía computarizada para diagnósticos precisos.</p></div>
+          <div class="why-card"><div class="why-card-icon">💳</div><h4>Financiamiento</h4><p>Hasta 24 meses sin intereses con tarjeta o plan personalizado.</p></div>
+          <div class="why-card"><div class="why-card-icon">📱</div><h4>Cita digital</h4><p>Reserva, cancela o reagenda tu cita en 2 minutos desde cualquier dispositivo.</p></div>
+          <div class="why-card"><div class="why-card-icon">🛡️</div><h4>Garantía</h4><p>Garantizamos todos nuestros tratamientos con respaldo clínico documentado.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-num">2,400+</span><span class="stat-lbl">Pacientes atendidos</span></div>
+        <div class="stat-card"><span class="stat-num">15 años</span><span class="stat-lbl">De experiencia clínica</span></div>
+        <div class="stat-card"><span class="stat-num">4.9 ★</span><span class="stat-lbl">Calificación Google</span></div>
+        <div class="stat-card"><span class="stat-num">8</span><span class="stat-lbl">Especialistas certificados</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="testimonios">
+    <div class="container">
+      <div class="center">
+        <span class="section-tag">Pacientes</span>
+        <h2 class="section-title">Lo que dicen de <span class="text-teal">nosotros</span></h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Me habían dicho que los implantes dolían mucho, pero aquí fue completamente diferente. El Dr. Vargas es increíble, muy profesional y atento. 100% recomendado."</blockquote>
+          <div class="testi-author"><div class="author-av">M</div><div class="author-info"><strong>Marcela Jiménez</strong><span>Implante dental, 2024</span></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Llevé a mis hijos y los hicieron sentir tan cómodos que ya no le tienen miedo al dentista. La doctora de odontopediatría es un amor, muy paciente."</blockquote>
+          <div class="testi-author"><div class="author-av g">K</div><div class="author-info"><strong>Karina Solano</strong><span>Odontología infantil, 2025</span></div></div>
+        </div>
+        <div class="testi-card">
+          <div class="stars">★★★★★</div>
+          <blockquote>"El blanqueamiento cambió completamente mi sonrisa. Antes me daba pena sonreír en fotos, ahora no paro de hacerlo. ¡Excelente resultado y muy rápido!"</blockquote>
+          <div class="testi-author"><div class="author-av p">A</div><div class="author-info"><strong>Alejandro Murillo</strong><span>Blanqueamiento, 2025</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CITA -->
+  <section id="cita">
+    <div class="container">
+      <div class="center">
+        <span class="section-tag">Cita</span>
+        <h2 class="section-title">Agenda tu cita <span class="text-teal">hoy mismo</span></h2>
+        <p class="section-sub">Primera consulta de evaluación sin costo. Confirmación por WhatsApp en menos de 30 minutos.</p>
+      </div>
+      <div class="cita-grid">
+        <div class="cita-info">
+          <h3>Información de contacto</h3>
+          <p>Estamos en el corazón de San José, con fácil acceso en transporte público o carro. También atendemos urgencias dentales.</p>
+          <div class="info-cards">
+            <div class="info-card"><div class="ic-icon">📍</div><div class="ic-info"><strong>Dirección</strong><span>Av. Central, San José — 2do piso</span></div></div>
+            <div class="info-card"><div class="ic-icon">📞</div><div class="ic-info"><strong>Teléfono / WhatsApp</strong><span>(506) 2222-SONRISA</span></div></div>
+            <div class="info-card"><div class="ic-icon">🕐</div><div class="ic-info"><strong>Horario</strong><span>Lun–Vie: 8am–7pm · Sáb: 8am–2pm</span></div></div>
+            <div class="info-card"><div class="ic-icon">🚗</div><div class="ic-info"><strong>Parking</strong><span>Parqueo gratis para pacientes</span></div></div>
+          </div>
+        </div>
+        <div>
+          <div class="cita-form">
+            <h3>Reservar consulta</h3>
+            <p>Primera visita sin costo · Confirmación inmediata</p>
+            <form onsubmit="return false;">
+              <div class="form-grid">
+                <div class="form-field"><label>Nombre</label><input type="text" placeholder="Tu nombre completo"></div>
+                <div class="form-field"><label>Teléfono</label><input type="tel" placeholder="(506) 8XXX-XXXX"></div>
+                <div class="form-field"><label>Email</label><input type="email" placeholder="tu@correo.com"></div>
+                <div class="form-field"><label>Fecha preferida</label><input type="date"></div>
+                <div class="form-field full"><label>Tratamiento de interés</label>
+                  <select>
+                    <option value="">Seleccione un servicio</option>
+                    <option>Limpieza y profilaxis</option>
+                    <option>Blanqueamiento dental</option>
+                    <option>Ortodoncia</option>
+                    <option>Implantes dentales</option>
+                    <option>Odontología infantil</option>
+                    <option>Endodoncia</option>
+                    <option>Consulta general</option>
+                  </select>
+                </div>
+                <div class="form-field full"><label>Comentarios adicionales</label><textarea placeholder="¿Tiene algún dolor o molestia en particular?"></textarea></div>
+              </div>
+              <p class="form-disclaimer">🔒 Tu información es confidencial y solo será usada para coordinar tu cita.</p>
+              <button class="btn-primary" style="border:none;cursor:pointer;font-family:var(--sans);width:100%;justify-content:center;">📅 Confirmar cita gratuita</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand">🦷 Sonrisa<span class="teal">Perfecta</span></div>
+          <p class="footer-desc">Clínica dental de confianza en San José, Costa Rica. Tecnología moderna y atención humana.</p>
+        </div>
+        <div class="footer-col"><h4>Servicios</h4><ul><li><a href="#">Limpieza</a></li><li><a href="#">Blanqueamiento</a></li><li><a href="#">Ortodoncia</a></li><li><a href="#">Implantes</a></li></ul></div>
+        <div class="footer-col"><h4>Clínica</h4><ul><li><a href="#">Nuestro equipo</a></li><li><a href="#">Instalaciones</a></li><li><a href="#">Blog dental</a></li><li><a href="#">Trabaja con nosotros</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul><li><a href="#">Política de privacidad</a></li><li><a href="#">Términos</a></li><li><a href="#">Cookies</a></li></ul></div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Clínica Dental Sonrisa Perfecta. Todos los derechos reservados.</p>
+        <a href="../index.html" class="footer-back">← Volver al portafolio</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('nav');
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
+
+</body>
+</html>
