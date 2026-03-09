@@ -6,18 +6,18 @@
 }
 
 :root {
-  --bg-primary: #080C14;
-  --bg-secondary: #0F172A;
-  --bg-card: #131C2E;
-  --accent: #6366F1;
-  --accent-light: #818CF8;
-  --accent-glow: rgba(99, 102, 241, 0.35);
-  --accent-2: #A855F7;
-  --text-primary: #F1F5F9;
-  --text-secondary: #94A3B8;
-  --text-muted: #4B5770;
-  --gradient: linear-gradient(135deg, #6366F1, #A855F7);
-  --gradient-text: linear-gradient(135deg, #818CF8 0%, #C084FC 100%);
+  --bg-primary: #080808;
+  --bg-secondary: #111111;
+  --bg-card: #161616;
+  --accent: #C9A84C;
+  --accent-light: #E2C27D;
+  --accent-glow: rgba(201, 168, 76, 0.35);
+  --accent-2: #A8A8B3;
+  --text-primary: #F5F5F5;
+  --text-secondary: #A8A8B3;
+  --text-muted: #505060;
+  --gradient: linear-gradient(135deg, #C9A84C, #E2C27D);
+  --gradient-text: linear-gradient(135deg, #E2C27D 0%, #C0C0C0 100%);
   --font: 'Inter', sans-serif;
   --radius: 14px;
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -39,7 +39,7 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle at 1px 1px, rgba(99,102,241,0.07) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(201,168,76,0.06) 1px, transparent 0);
   background-size: 40px 40px;
   pointer-events: none;
   z-index: 0;
@@ -99,7 +99,7 @@ ul {
   background: rgba(8, 12, 20, 0.6);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(99, 102, 241, 0.12);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
   transition: background var(--transition), box-shadow var(--transition);
 }
 
@@ -317,7 +317,7 @@ section {
 .btn-primary:hover::after { opacity: 1; }
 
 .btn-secondary {
-  border: 1px solid rgba(99, 102, 241, 0.5);
+  border: 1px solid rgba(201, 168, 76, 0.5);
   color: var(--text-primary);
   padding: 0.8rem 2rem;
   border-radius: 50px;
@@ -328,7 +328,7 @@ section {
 }
 
 .btn-secondary:hover {
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(201, 168, 76, 0.1);
   border-color: var(--accent);
   transform: translateY(-2px);
 }
@@ -394,7 +394,7 @@ section {
   width: 360px;
   height: 360px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #1a2140, var(--bg-secondary));
+  background: radial-gradient(circle at 30% 30%, #1A1610, var(--bg-secondary));
   border: 3px solid var(--bg-primary);
   display: flex;
   align-items: center;
@@ -438,8 +438,8 @@ section {
   width: 270px;
   height: 270px;
   border-radius: 24px;
-  background: linear-gradient(135deg, #131C2E, var(--bg-secondary));
-  border: 2px solid rgba(99, 102, 241, 0.3);
+  background: linear-gradient(135deg, #1A1610, var(--bg-secondary));
+  border: 2px solid rgba(201, 168, 76, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -509,7 +509,7 @@ section {
 }
 
 .strengths-list li:hover {
-  background: rgba(99, 102, 241, 0.08);
+  background: rgba(201, 168, 76, 0.08);
   color: var(--text-primary);
 }
 
@@ -556,8 +556,8 @@ section {
 }
 
 .skill-card {
-  background: #0F172A;
-  border: 2px solid rgba(99, 102, 241, 0.55);
+  background: #161616;
+  border: 2px solid rgba(201, 168, 76, 0.45);
   border-radius: 18px;
   padding: 2rem 1rem;
   display: flex;
@@ -584,7 +584,7 @@ section {
 .skill-card:hover {
   transform: translateY(-6px);
   border-color: var(--accent-light);
-  box-shadow: 0 0 20px rgba(99,102,241,0.5), 0 0 50px rgba(99,102,241,0.2), inset 0 0 20px rgba(99,102,241,0.05);
+  box-shadow: 0 0 20px rgba(201,168,76,0.4), 0 0 50px rgba(201,168,76,0.15), inset 0 0 20px rgba(201,168,76,0.05);
 }
 
 .skill-card:hover::before { opacity: 0.06; }
@@ -627,8 +627,8 @@ section {
 }
 
 .project-card {
-  background: #0B1120;
-  border: 1.5px solid rgba(99, 102, 241, 0.35);
+  background: #0E0E0E;
+  border: 1.5px solid rgba(201, 168, 76, 0.25);
   border-radius: 18px;
   overflow: hidden;
   transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
@@ -637,7 +637,7 @@ section {
 .project-card:hover {
   transform: translateY(-7px);
   border-color: var(--accent-light);
-  box-shadow: 0 0 25px rgba(99,102,241,0.4), 0 20px 40px rgba(0,0,0,0.5);
+  box-shadow: 0 0 25px rgba(201,168,76,0.3), 0 20px 40px rgba(0,0,0,0.6);
 }
 
 /* Header de la card: nombre a la izquierda, imagen a la derecha */
@@ -646,9 +646,9 @@ section {
   align-items: center;
   justify-content: space-between;
   padding: 1.75rem 1.5rem;
-  min-height: 110px;
-  background: linear-gradient(135deg, #0B1120 60%, rgba(99,102,241,0.07));
-  border-bottom: 1px solid rgba(99,102,241,0.15);
+  min-height: 160px;
+  background: linear-gradient(135deg, #111111 60%, rgba(201,168,76,0.06));
+  border-bottom: 1px solid rgba(201,168,76,0.12);
   gap: 1rem;
   position: relative;
   overflow: hidden;
@@ -664,8 +664,8 @@ section {
 }
 
 .project-image img {
-  width: 110px;
-  height: 110px;
+  width: 160px;
+  height: 160px;
   object-fit: contain;
   flex-shrink: 0;
   transition: transform var(--transition);
@@ -704,7 +704,7 @@ section {
 }
 
 .btn-project:hover {
-  background: rgba(99,102,241,0.15);
+  background: rgba(201,168,76,0.12);
   border-color: var(--accent-light);
   box-shadow: 0 0 15px var(--accent-glow);
   transform: translateY(-1px);
@@ -716,7 +716,7 @@ section {
   margin-top: 2.5rem;
   font-size: 0.9rem;
   padding: 1rem;
-  border: 1px dashed rgba(99,102,241,0.2);
+  border: 1px dashed rgba(201,168,76,0.2);
   border-radius: var(--radius);
 }
 
@@ -744,7 +744,7 @@ section {
 .form-input,
 .form-textarea {
   background: var(--bg-card);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(201, 168, 76, 0.2);
   border-radius: 12px;
   padding: 0.9rem 1.1rem;
   color: var(--text-primary);
@@ -757,7 +757,7 @@ section {
 .form-input:focus,
 .form-textarea:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
 }
 
 .form-input::placeholder,
@@ -800,7 +800,7 @@ section {
   color: var(--text-secondary);
   font-size: 0.93rem;
   padding: 1rem 1.25rem;
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(201, 168, 76, 0.15);
   border-radius: var(--radius);
   background: var(--bg-card);
   transition: all var(--transition);
@@ -816,7 +816,7 @@ section {
 .contact-link:hover {
   border-color: var(--accent);
   color: var(--text-primary);
-  background: rgba(99, 102, 241, 0.08);
+  background: rgba(201, 168, 76, 0.08);
   transform: translateX(4px);
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
@@ -826,7 +826,7 @@ section {
 /* ===== FOOTER ===== */
 footer {
   background: var(--bg-secondary);
-  border-top: 1px solid rgba(99, 102, 241, 0.12);
+  border-top: 1px solid rgba(201, 168, 76, 0.15);
   padding: 2.5rem 0;
 }
 
@@ -861,7 +861,7 @@ footer {
     background-color: var(--bg-secondary);
     padding: 1.5rem 2rem;
     gap: 1.25rem;
-    border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
   }
 
   .nav-links.active {
